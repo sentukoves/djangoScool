@@ -11,7 +11,6 @@ def index(request):
 
     if request.method == "POST"  and request.POST.get("Login") and request.POST.get("Password"):
         login , password = request.POST.get("Login"), request.POST.get("Password")
-
         if login == "admin" and password == "admin":
             request.session.set_expiry(60)
             request.session['pause'] = True
@@ -19,13 +18,8 @@ def index(request):
         else:
             data["label"] = "Вы вели неверный логин или пароль"
             return render(request, "quiz/index.html", context=data)
-
-    if "color" in request.COOKIES:
-        return render(request, "quiz/index.html", context=data)
-    response = HttpResponse("CocTest")
-    response.set_cookie('color', "TEST")
-    return response
-
+    #response.set_cookie('color', "TEST")  #добавить куки.
+    return render(request, "quiz/index.html", context=data)
 
 def main(request):
     if "pause" in request.session:
