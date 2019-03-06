@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', quiz.index, name='login'),
     path(r'/main$', quiz.main , name="main"),
+	path(r'/main', quiz.main , name="main"),
 ]
